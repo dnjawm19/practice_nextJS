@@ -1,8 +1,22 @@
-export const metadata = {
-  title: "Home",
-  description: "The best movies on the best framework",
-};
+"use client";
+
+import { useEffect, useState } from "react";
 
 export default function Test() {
-  return <h1>hello test</h1>;
+  const [isLoading, setIsLoading] = useState(true);
+  const [movies, setMovies] = useState([]);
+  const getMovies = async () => {
+    const response = await fetch(
+      "https://nomad-movies.nomadcoders.workers.dev/movies"
+    );
+    const json = await response.json();
+
+    setMovies(json);
+    setIsLoading(false);
+  };
+  useEffect(() => {
+    getMovies();
+  }, []);
+
+  return <div>{isLoading ? "Loading" : JSON.stringify(movies)}</div>;
 }
