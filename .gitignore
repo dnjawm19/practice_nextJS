@@ -1,3 +1,13 @@
 node_modules/
 
 .next/
+/out/
+
+/build
+
+.vercel
+
+.DS_Store
+*.pem
+
+/coverage
